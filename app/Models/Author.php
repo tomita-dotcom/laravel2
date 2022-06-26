@@ -31,3 +31,4 @@ class Author extends Model
     public function reviews(){
         return $this->belongsToMany(Book::class);
     }
+}

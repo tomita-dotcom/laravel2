@@ -9,7 +9,7 @@ class AuthorController extends Controller
 {
     public function index()
     {
-        $items = Author::all();
+        $items =  Author::simplePaginate(4);
         return view('index', ['items' => $items]);
     }
     public function find()
