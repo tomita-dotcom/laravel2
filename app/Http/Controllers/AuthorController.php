@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Author;
 use Illuminate\Http\Request;
+use App\Models\Author;
 
 class AuthorController extends Controller
 {
     public function index()
     {
-        $items =  Author::simplePaginate(4);
+        $items = Author::all();
         return view('index', ['items' => $items]);
     }
     public function find()
@@ -65,12 +65,5 @@ class AuthorController extends Controller
     {
         Author::find($request->id)->delete();
         return redirect('/');
-    } 
-    public function relate(Request $request) //追記
-    {
-        $hasItems = Author::has('book')->get();
-        $noItems = Author::doesntHave('book')->get();
-        $param = ['hasItems' => $hasItems, 'noItems' => $noItems];
-        return view('author.index',$param);
     }
 }
